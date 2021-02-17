@@ -8,11 +8,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Kingdle">
+        android:theme="@style/Theme.Appcelerator">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Kingdle.NoActionBar">
+            android:label="@string/app_name">
+<!--            android:theme="@style/Theme.Kingdle.NoActionBar">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
