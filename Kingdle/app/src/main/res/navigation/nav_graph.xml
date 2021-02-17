@@ -3,26 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/navigation_top">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.kingdle.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+        android:id="@+id/navigation_top"
+        android:name="com.example.kingdle.TopFragment"
+        android:label="@string/title_top"
+        tools:layout="@layout/fragment_top">
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.kingdle.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/navigation_read"
+        android:name="com.example.kingdle.ReadFragment"
+        android:label="@string/title_read"
+        tools:layout="@layout/fragment_read">
+    </fragment>
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+    <fragment
+        android:id="@+id/navigation_saved"
+        android:name="com.example.kingdle.SavedFragment"
+        android:label="@string/title_saved"
+        tools:layout="@layout/fragment_saved">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.example.kingdle.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search">
     </fragment>
 </navigation>
