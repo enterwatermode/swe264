@@ -1,9 +1,15 @@
 package com.example.kingdle;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.IBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +53,32 @@ public class ReadFragment extends Fragment {
         return fragment;
     }
 */
+     /*
+    Author: Yukan Zhang
+    Timer connection
+    */
+    TimerService FragTimer;
+    boolean bound;
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            TimerService.TimerBinder TimerBinder = (TimerService.TimerBinder) iBinder;
+            FragTimer = TimerBinder.getTime();
+            FragTimer.runTimer1();
+            FragTimer.running = true;
+            bound = true;
+            Log.v("Main","GetBinder");
+        }
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            FragTimer.running =false;
+            bound = false;
+            // Log.v("Main","unBinder");
+        }
+    };
+    /*
+    Timer connection end
+    */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,4 +94,38 @@ public class ReadFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_read, container, false);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /*
+        Author: Yukan Zhang
+        Timer connection
+        */
+        if(!bound) {
+            Intent intent = new Intent(getContext(), TimerService.class);
+            getActivity().bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        }
+        /*
+        Timer connection end
+        */
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        /*
+        Author: Yukan Zhang
+        Timer connection
+        */
+        if(bound) {
+            getActivity().unbindService(connection);
+            FragTimer.running = false;
+            bound = false;
+        }
+        /*
+        Timer connection end
+        */
+    }
+
 }
