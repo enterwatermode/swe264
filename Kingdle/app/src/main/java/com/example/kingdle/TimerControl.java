@@ -1,6 +1,5 @@
 package com.example.kingdle;
 
 public class TimerControl {
-    public static int limit = 5;
-
+    public static int last_read = 0;
 }

@@ -119,9 +119,11 @@ public class ReadFragment extends Fragment {
         Timer connection
         */
         if(bound) {
+            TimerControl.last_read = FragTimer.seconds1;
             getActivity().unbindService(connection);
             FragTimer.running = false;
             bound = false;
+            Log.v("Reading Timer", String.valueOf(TimerControl.last_read));
         }
         /*
         Timer connection end

@@ -51,6 +51,7 @@ public class TimerService extends Service {
         //running = false;
         Log.v("service","on Destroy");
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void notification(){
         if(seconds1 == LIMIT && notify == true) {
@@ -74,7 +75,7 @@ public class TimerService extends Service {
 
             builder = builder
                     .setSmallIcon(R.drawable.ic_book_foreground)
-                    .setContentTitle("You spent" + readTimer() + " last time")
+                    .setContentTitle("You spent " + readTimer() + " last time")
                     .setContentText("Wish to see you again!")
                     .setVibrate(new long[]{0, 1000})
                     .setDefaults(Notification.DEFAULT_ALL)
@@ -99,15 +100,13 @@ public class TimerService extends Service {
         });
     }
 
-
-
     public String readTimer(){
         int hours = 0 ;
         int minutes = 0 ;
         int secs = 0 ;
-        hours = seconds1/3600;
-        minutes = ( seconds1%3600)/60;
-        secs =  seconds1%60;
+        hours = TimerControl.last_read/3600;
+        minutes = ( TimerControl.last_read%3600)/60;
+        secs =  TimerControl.last_read%60;
 
         return String.valueOf(hours) + ":"+ String.valueOf(minutes)+":"+String.valueOf(secs);
     }

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity{
     */
     TimerService timer;
     boolean bound;
+
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity{
            // Log.v("Main","unBinder");
         }
     };
+
     /*
     Timer connection end
     */
@@ -95,9 +97,12 @@ public class MainActivity extends AppCompatActivity{
         if(bound) {
             unbindService(connection);
             timer.running = false;
+            timer.seconds1 = 0;
             timer.notify = false;
             bound = false;
         }
+
+
         /*
         Timer connection end
         */
@@ -116,6 +121,8 @@ public class MainActivity extends AppCompatActivity{
             Intent intent = new Intent(this, TimerService.class);
             bindService(intent, connection, Context.BIND_AUTO_CREATE);
         }
+
+
         /*
         Timer connection end
         */
