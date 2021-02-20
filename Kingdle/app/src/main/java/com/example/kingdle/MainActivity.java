@@ -40,13 +40,15 @@ public class MainActivity extends AppCompatActivity{
             TimerService.TimerBinder TimerBinder = (TimerService.TimerBinder) iBinder;
             timer = TimerBinder.getTime();
             timer.runTimer1();
+            timer.notify = true;
             timer.running = true;
             bound = true;
             Log.v("Main","GetBinder");
         }
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
-            timer.running =false;
+            timer.running = false;
+            timer.notify = false;
             bound = false;
            // Log.v("Main","unBinder");
         }
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity{
         if(bound) {
             unbindService(connection);
             timer.running = false;
+            timer.notify = false;
             bound = false;
         }
         /*

@@ -18,10 +18,14 @@ import androidx.core.app.NotificationCompat;
 public class TimerService extends Service {
     private  final IBinder binder = new TimerBinder();
     private Handler handler = new Handler();
+
     public int seconds1 = 0;
-    public final int LIMIT = 5;
     public boolean running = false;
+
+    public boolean notify = false;
+    public final int LIMIT = 5;
     public static final int NOTIFICAION_ID = 5321;
+
     public TimerService() {
     }
     @Override
@@ -49,7 +53,7 @@ public class TimerService extends Service {
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void notification(){
-        if(seconds1 == LIMIT) {
+        if(seconds1 == LIMIT && notify == true) {
 
             Log.v("mock_notification", "see you again");
             NotificationManager notificationManager = (NotificationManager) this.getSystemService(this.NOTIFICATION_SERVICE);
@@ -94,6 +98,8 @@ public class TimerService extends Service {
             }
         });
     }
+
+
 
     public String readTimer(){
         int hours = 0 ;
