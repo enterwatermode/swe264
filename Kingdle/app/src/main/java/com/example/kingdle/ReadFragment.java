@@ -14,7 +14,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ReadFragment extends Fragment {
-
+/*
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,6 +36,7 @@ public class ReadFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ReadFragment.
      */
+    /*
     // TODO: Rename and change types and number of parameters
     public static ReadFragment newInstance(String param1, String param2) {
         ReadFragment fragment = new ReadFragment();
@@ -45,14 +46,14 @@ public class ReadFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    //    if (getArguments() != null) {
+    //        mParam1 = getArguments().getString(ARG_PARAM1);
+    //        mParam2 = getArguments().getString(ARG_PARAM2);
+    //    }
     }
 
     @Override
