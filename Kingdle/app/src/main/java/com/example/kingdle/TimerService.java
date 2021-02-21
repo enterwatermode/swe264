@@ -1,5 +1,11 @@
 package com.example.kingdle;
-
+/*
+Component: Service
+Author: Yukan Zhang
+Functionality: App timer
+               Recording duration the user spends on Reading;
+               Send notification to welcome the user continue using the app
+ */
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

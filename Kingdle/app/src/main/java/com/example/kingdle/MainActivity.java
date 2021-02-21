@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.*;
@@ -51,14 +53,20 @@ public class MainActivity extends AppCompatActivity{
             timer.running = false;
             timer.notify = false;
             bound = false;
-           // Log.v("Main","unBinder");
         }
     };
-
     /*
     Timer connection end
     */
 
+     /*
+    Author: Yukan Zhang
+    BroadCast Receiver
+    */
+    ConnectivityControl connectivityControl = new ConnectivityControl();
+    /*
+   BroadCast Receiver end
+   */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +90,17 @@ public class MainActivity extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
         Log.v("MainActivity", "on Destory");
+    /*
+    Author: Yukan Zhang
+    BroadCast Receiver
+    */
+        IntentFilter intentFilter1 = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        IntentFilter intentFilter2 = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(connectivityControl, intentFilter1);
+        registerReceiver(connectivityControl, intentFilter2);
+    /*
+   BroadCast Receiver end
+   */
 
     }
 
@@ -101,8 +120,6 @@ public class MainActivity extends AppCompatActivity{
             timer.notify = false;
             bound = false;
         }
-
-
         /*
         Timer connection end
         */
@@ -121,8 +138,6 @@ public class MainActivity extends AppCompatActivity{
             Intent intent = new Intent(this, TimerService.class);
             bindService(intent, connection, Context.BIND_AUTO_CREATE);
         }
-
-
         /*
         Timer connection end
         */
@@ -133,7 +148,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onStop() {
         super.onStop();
         Log.v("MainActivity", "on Stop");
-
+        unregisterReceiver(connectivityControl);
     }
 
     @Override
