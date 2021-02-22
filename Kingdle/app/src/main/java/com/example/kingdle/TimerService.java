@@ -149,6 +149,8 @@ public class TimerService extends Service {
                      Log.v("Read Timer", String.valueOf(hours) + ":" + String.valueOf(minutes) + ":" + String.valueOf(secs));
                      notification(String.valueOf(hours) + ":" + String.valueOf(minutes) + ":" + String.valueOf(secs));
                      notify = false;
+                     flag = 0;
+                     running = false;
                  }
                  handler.postDelayed(this, 1000);
              }
