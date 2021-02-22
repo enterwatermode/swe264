@@ -30,13 +30,12 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity{
     private NavController navController;
 
-    /*
+    /***********************************
     Author: Yukan Zhang
     Timer connection
-    */
+    ***********************************/
     TimerService timer;
     boolean bound;
-
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -55,18 +54,18 @@ public class MainActivity extends AppCompatActivity{
             bound = false;
         }
     };
-    /*
+    /***********************************
     Timer connection end
-    */
-
-     /*
+    ***********************************/
+    /***********************************
     Author: Yukan Zhang
     BroadCast Receiver
-    */
+    ***********************************/
     ConnectivityControl connectivityControl = new ConnectivityControl();
-    /*
-   BroadCast Receiver end
-   */
+    /***********************************
+    BroadCast Receiver end
+    ***********************************/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,18 +89,17 @@ public class MainActivity extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
         Log.v("MainActivity", "on Destory");
-    /*
+    /***********************************
     Author: Yukan Zhang
     BroadCast Receiver
-    */
+    ***********************************/
         IntentFilter intentFilter1 = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         IntentFilter intentFilter2 = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         registerReceiver(connectivityControl, intentFilter1);
         registerReceiver(connectivityControl, intentFilter2);
-    /*
-   BroadCast Receiver end
-   */
-
+    /***********************************
+    BroadCast Receiver end
+    ***********************************/
     }
 
     @Override
@@ -109,10 +107,10 @@ public class MainActivity extends AppCompatActivity{
         super.onResume();
         Log.v("MainActivity", "on Resume");
 
-        /*
+        /***********************************
         Author: Yukan Zhang
         Timer connection
-        */
+        ***********************************/
         if(bound) {
             unbindService(connection);
             timer.running = false;
@@ -120,9 +118,9 @@ public class MainActivity extends AppCompatActivity{
             timer.notify = false;
             bound = false;
         }
-        /*
+        /***********************************
         Timer connection end
-        */
+        ***********************************/
     }
 
     @Override
@@ -130,43 +128,48 @@ public class MainActivity extends AppCompatActivity{
         super.onPause();
         Log.v("MainActivity", "on Pause");
 
-        /*
-        Author: Yukan Zhang
-        Timer connection
-        */
-        if(!bound) {
-            Intent intent = new Intent(this, TimerService.class);
-            bindService(intent, connection, Context.BIND_AUTO_CREATE);
-        }
-        /*
-        Timer connection end
-        */
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.v("MainActivity", "on Stop");
+        /***********************************
+        Author: Yukan Zhang
+        Timer connection
+        ***********************************/
+        if(!bound) {
+            Intent intent = new Intent(this, TimerService.class);
+            bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        }
+        /***********************************
+        Timer connection end
+        ***********************************/
+         /***********************************
+        Author: Yukan Zhang
+        BroadCast Receiver
+        ***********************************/
         unregisterReceiver(connectivityControl);
+        /***********************************
+        BroadCast Receiver end
+        ***********************************/
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.v("MainActivity", "on Destory");
-
-        /*
+        /***********************************
         Author: Yukan Zhang
         Timer connection
-        */
+        ***********************************/
         if(bound) {
             unbindService(connection);
             timer.running = false;
             bound = false;
         }
-        /*
+        /***********************************
         Timer connection end
-        */
+        ***********************************/
     }
 }

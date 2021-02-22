@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,10 +56,13 @@ public class ReadFragment extends Fragment {
         return fragment;
     }
 */
-     /*
+
+
+
+    /**************************************
     Author: Yukan Zhang
     Timer connection
-    */
+    *****************************************/
     TimerService FragTimer;
     boolean bound;
     private ServiceConnection connection = new ServiceConnection() {
@@ -76,9 +82,20 @@ public class ReadFragment extends Fragment {
             // Log.v("Main","unBinder");
         }
     };
-    /*
+    /***********************************
     Timer connection end
-    */
+    ***********************************/
+    /***********************************
+     Author: Yukan Zhang
+     Timer connection, Database access
+     ***********************************/
+    ServiceDB db;
+    ServiceDao sdao;
+    ServiceTable stable;
+    /***********************************
+     Timer connection, database access end
+     ***********************************/
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +103,16 @@ public class ReadFragment extends Fragment {
     //        mParam1 = getArguments().getString(ARG_PARAM1);
     //        mParam2 = getArguments().getString(ARG_PARAM2);
     //    }
+        /***********************************
+         Author: Yukan Zhang
+         Timer connection, Database access
+         ***********************************/
+        db = ServiceDB.getDatabase(this.getContext());
+        sdao = db.serviceDao();
+        stable = new ServiceTable();
+        /***********************************
+         Timer connection, database access end
+         ***********************************/
     }
 
     @Override
@@ -98,36 +125,54 @@ public class ReadFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        /*
+        /***********************************
         Author: Yukan Zhang
         Timer connection
-        */
+        ***********************************/
         if(!bound) {
             Intent intent = new Intent(getContext(), TimerService.class);
             getActivity().bindService(intent, connection, Context.BIND_AUTO_CREATE);
         }
-        /*
+        /***********************************
         Timer connection end
-        */
+        ***********************************/
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        /*
+        /***********************************
         Author: Yukan Zhang
-        Timer connection
-        */
+        Timer connection, Database access
+        ***********************************/
         if(bound) {
-            TimerControl.last_read = FragTimer.seconds1;
+            //TimerControl.last_read = FragTimer.seconds1;
+            class SaveTask extends AsyncTask<Void, Void, Void> {
+                @Override
+                protected Void doInBackground(Void... voids) {
+
+                    stable.date =  java.text.DateFormat.getDateTimeInstance().format(new Date());
+                    stable.last_read = FragTimer.seconds1;
+                    Log.v("last_read to db", String.valueOf(stable.last_read));
+                    //adding to database
+                    sdao.insert(stable);
+                    return null;
+                }
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                }
+            }
+            SaveTask st = new SaveTask();
+            st.execute();
+
             getActivity().unbindService(connection);
             FragTimer.running = false;
             bound = false;
-            Log.v("Reading Timer", String.valueOf(TimerControl.last_read));
         }
-        /*
-        Timer connection end
-        */
+        /***********************************
+        Timer connection, database access end
+        ***********************************/
     }
 
 }

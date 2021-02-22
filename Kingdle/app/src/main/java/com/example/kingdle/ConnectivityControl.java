@@ -1,11 +1,5 @@
 package com.example.kingdle;
-/*
-Component: Broadcast Receiver
-Author: Yukan Zhang
-Functionality: Low battery and no internet broadcast receiver
-               Show Taast when battery is low or no internet connection
-               * Stop the user downloading information from API
- */
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +8,13 @@ import android.os.BatteryManager;
 import android.support.v4.app.INotificationSideChannel;
 import android.util.Log;
 import android.widget.Toast;
-
+/***************************************
+ Component: Broadcast Receiver
+ Author: Yukan Zhang
+ Functionality: Low battery and no internet broadcast receiver
+ Show Taast when battery is low or no internet connection
+ * Stop the user downloading information from API
+ * ***************************************/
 public class ConnectivityControl extends BroadcastReceiver {
     float previous;
     @Override
@@ -42,6 +42,5 @@ public class ConnectivityControl extends BroadcastReceiver {
                 previous = 0;
             }
         }
-        
     }
 }
