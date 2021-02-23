@@ -43,7 +43,8 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Vi
     public void onBindViewHolder(SearchBookAdapter.ViewHolder holder, int position) {
         HashMap<String, List<String>> map = mData.get(position);
         holder.tvTitle.setText(map.get("Title").get(0));
-        Picasso.get().load(map.get("Image").get(0)).into(holder.tvImage);
+//        Picasso.get().load(map.get("Image").get(0)).into(holder.tvImage);
+//        Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(holder.tvImage);
         StringBuilder des = new StringBuilder();
         for(String key: map.keySet()){
             if(key.equals("Title") || key.equals("Image")) continue;
@@ -52,7 +53,7 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Vi
                 des.append(val + ", ");
             }
             des.deleteCharAt(des.length() - 2);
-            des.append("\n");
+            des.append("\n\n");
         }
         holder.tvInfo.setText(des.toString());
     }

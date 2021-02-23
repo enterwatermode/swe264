@@ -67,8 +67,8 @@ public class SearchFragment extends Fragment {
 
     private void connect(String title, String author) {
         String query = "";
-        if(title != null) query += title;
-        if(author != null) query += "+inauthor:" + author;
+        if(title.length() > 0) query += title;
+        if(author.length() > 0) query += "+inauthor:" + author;
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
