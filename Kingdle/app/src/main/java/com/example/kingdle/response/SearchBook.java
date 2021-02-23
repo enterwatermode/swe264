@@ -1,4 +1,4 @@
-package com.example.kingdle.responseClass;
+package com.example.kingdle.response;
 
 import com.google.gson.annotations.SerializedName;
 

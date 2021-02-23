@@ -1,21 +1,10 @@
-package com.example.kingdle.responseClass;
+package com.example.kingdle.response;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.List;
 
-public class BookItem {
-    @SerializedName("volumeInfo")
-    Volumeinfo volumeinfo;
-
-    public BookItem(Volumeinfo volumeinfo) {
-        this.volumeinfo = volumeinfo;
-    }
-
-    public Volumeinfo getVolumeinfo() {
-        return volumeinfo;
-    }
-}
-class Volumeinfo{
+public class Volumeinfo{
     @SerializedName("title")
     String title;
     @SerializedName("subtitle")
@@ -24,6 +13,8 @@ class Volumeinfo{
     List<String> authors;
     @SerializedName("industryIdentifiers")
     List<IndustryInfo> induinfo;
+    @SerializedName("description")
+    String description;
     @SerializedName("imageLinks")
     private Image imageLinks;
 
@@ -54,36 +45,8 @@ class Volumeinfo{
     public Image getImageLinks() {
         return imageLinks;
     }
-}
 
-class IndustryInfo{
-    @SerializedName("type")
-    String type;
-    @SerializedName("identifier")
-    String identifier;
-
-    public IndustryInfo(String type, String identifier) {
-        this.type = type;
-        this.identifier = identifier;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-}
-class Image{
-    @SerializedName("thumbnail")
-    String path;
-
-    public Image(String path) {
-        this.path = path;
-    }
-
-    public String getPath() {
-        return path;
+    public String getDescription() {
+        return description;
     }
 }

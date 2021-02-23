@@ -1,6 +1,6 @@
 package com.example.kingdle.ApiService;
 
-import com.example.kingdle.responseClass.SearchBook;
+import com.example.kingdle.response.SearchBook;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

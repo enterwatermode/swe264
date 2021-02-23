@@ -21,14 +21,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:id="@+id/tvAuthor"
+        android:id="@+id/tvInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="tvReleaseDate" />
 
-    <TextView
-        android:id="@+id/tvInduID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tvVote" />
 </LinearLayout>
