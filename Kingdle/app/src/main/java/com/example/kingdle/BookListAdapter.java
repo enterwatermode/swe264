@@ -1,5 +1,6 @@
 package com.example.kingdle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         TextView tvIsbn;
         Button buttonSave;
         Button buttonRead;
+        Book b;
 
         ViewHolder(View bookRow) {
             super(bookRow);
@@ -58,6 +60,20 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         holder.tvDescription.setText(book.get_description());
         holder.tvIsbn.setText(book.get_isbn());
         holder.tvRating.setText(Float.toString(book.get_rating()));
+        holder.itemView.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("demo", "onClick for book" + book.get_title());
+
+            }
+        });
+        holder.itemView.findViewById(R.id.buttonRead).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("demo", "onClick for book" + book.get_title());
+
+            }
+        });
     }
 
     @Override
