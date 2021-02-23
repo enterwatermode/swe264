@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchFragment">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Search"
-        android:textSize="50sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.administrator.login.login"
+        >
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:hint="@string/title"
+            android:textColor="@color/colorPrimary"/>
+
+        <EditText
+            android:id="@+id/mPassWord"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_below="@+id/Author"
+            android:hint="@string/author"
+            android:textColor="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/mButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="14dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/search" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 </FrameLayout>
