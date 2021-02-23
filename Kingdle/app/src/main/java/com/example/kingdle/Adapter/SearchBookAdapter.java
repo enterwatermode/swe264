@@ -46,6 +46,7 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Vi
 //        Picasso.get().load(map.get("Image").get(0)).into(holder.tvImage);
 //        Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(holder.tvImage);
         StringBuilder des = new StringBuilder();
+        des.append("\n");
         for(String key: map.keySet()){
             if(key.equals("Title") || key.equals("Image")) continue;
             des.append(key + ": ");
