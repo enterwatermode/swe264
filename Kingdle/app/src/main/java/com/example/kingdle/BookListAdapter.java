@@ -3,6 +3,7 @@ package com.example.kingdle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         TextView tvRating;
         TextView tvDescription;
         TextView tvIsbn;
+        Button buttonSave;
+        Button buttonRead;
 
         ViewHolder(View bookRow) {
             super(bookRow);
@@ -34,6 +37,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
             tvRating = bookRow.findViewById(R.id.tvRating);
             tvDescription = bookRow.findViewById(R.id.tvDescription);
             tvIsbn =  bookRow.findViewById(R.id.tvIsbn);
+            buttonSave = bookRow.findViewById(R.id.buttonSave);
+            buttonRead = bookRow.findViewById(R.id.buttonRead);
         }
     }
 
