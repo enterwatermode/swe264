@@ -76,8 +76,6 @@ public class SearchFragment extends Fragment {
                     .build();
         }
         GoogleBookApiService bookApiService = retrofit.create(GoogleBookApiService.class);
-
-
         Call<SearchBook> call = bookApiService.getSearchBook(query ,API_KEY);
         call.enqueue(new Callback<SearchBook>() {
             @Override
@@ -89,13 +87,27 @@ public class SearchFragment extends Fragment {
                 for(BookItem t: m){
                     Volumeinfo vf = t.getVolumeinfo();
                     HashMap<String, List<String>> book = new HashMap<>();
-                    book.put("Title", Arrays.asList(vf.getTitle() + vf.getSubtitle()));
-                    book.put("Authors", vf.getAuthors());
-                    for(IndustryInfo ii: vf.getInduinfo()){
-                        book.put(ii.getType(), Arrays.asList(ii.getIdentifier()));
+
+                    if(vf.getSubtitle() == null){
+                        book.put("Title", Arrays.asList(vf.getTitle()));
                     }
-                    book.put("Image", Arrays.asList(vf.getImageLinks().getPath()));
-                    book.put("Description", Arrays.asList(vf.getDescription()));
+                    else {
+                        book.put("Title", Arrays.asList(vf.getTitle() + " " + vf.getSubtitle()));
+                    }
+
+                    book.put("Authors", vf.getAuthors());
+
+                    if(vf.getInduinfo() != null){
+                        for(IndustryInfo ii: vf.getInduinfo()){
+                            book.put(ii.getType(), Arrays.asList(ii.getIdentifier()));
+                        }
+                    }
+                    if(vf.getImageLinks() != null && vf.getImageLinks().getPath() != null){
+                        book.put("Image", Arrays.asList(vf.getImageLinks().getPath()));
+                    }
+                    if(vf.getDescription() != null) {
+                        book.put("Description", Arrays.asList(vf.getDescription()));
+                    }
                     books.add(book);
                 }
                 recyclerView.setAdapter(new SearchBookAdapter(books));
