@@ -65,7 +65,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         holder.tvAuthor.setText("Author: " + book.get_author());
         holder.tvDescription.setText("Descrition: " + book.get_description());
         holder.tvIsbn.setText("ISBN: " + book.get_isbn());
-        holder.tvRating.setText("Rating: " + Float.toString(book.get_rating()));
+        holder.tvRating.setText("Rating: " + (book.get_rating()));
         holder.itemView.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
