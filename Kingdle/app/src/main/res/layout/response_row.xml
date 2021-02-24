@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/ivBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="292dp"
+        android:layout_height="263dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView

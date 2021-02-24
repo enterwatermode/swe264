@@ -44,7 +44,9 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Vi
         HashMap<String, List<String>> map = mData.get(position);
         holder.tvTitle.setText(map.get("Title").get(0));
         if(map.get("Image") != null && map.get("Image").size() > 0) {
-            Picasso.get().load(map.get("Image").get(0)).into(holder.tvImage);
+            String url = map.get("Image").get(0);
+            url = url.substring(0, 4) + "s" + url.substring(4);
+            Picasso.get().load(url).into(holder.tvImage);
         }
 //        Picasso.get().load("https://www.gstatic.com/webp/gallery/4.sm.jpg").into(holder.tvImage);
         StringBuilder des = new StringBuilder();
@@ -62,6 +64,9 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Vi
             }
             des.deleteCharAt(des.length() - 2);
             des.append("\n\n");
+        }
+        if(position == mData.size() - 1){
+            des.append("\n\n\n\n\n\n\n");
         }
         holder.tvInfo.setText(des.toString());
     }
