@@ -28,8 +28,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         TextView tvDescription;
         TextView tvIsbn;
         Button buttonSave;
-        Button buttonRead;
-        Book b;
 
         ViewHolder(View bookRow) {
             super(bookRow);
@@ -40,7 +38,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
             tvDescription = bookRow.findViewById(R.id.tvDescription);
             tvIsbn =  bookRow.findViewById(R.id.tvIsbn);
             buttonSave = bookRow.findViewById(R.id.buttonSave);
-            buttonRead = bookRow.findViewById(R.id.buttonRead);
         }
     }
 
@@ -55,19 +52,13 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Book book = bookList.get(position);
         //Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).into(holder.ivMovie);
+        holder.ivBook.setImageResource(R.drawable.ic_book_foreground);
         holder.tvTitle.setText(book.get_title());
         holder.tvAuthor.setText(book.get_author());
         holder.tvDescription.setText(book.get_description());
         holder.tvIsbn.setText(book.get_isbn());
         holder.tvRating.setText(Float.toString(book.get_rating()));
         holder.itemView.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("demo", "onClick for book" + book.get_title());
-
-            }
-        });
-        holder.itemView.findViewById(R.id.buttonRead).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("demo", "onClick for book" + book.get_title());
