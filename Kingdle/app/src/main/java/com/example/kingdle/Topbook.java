@@ -1,6 +1,6 @@
 package com.example.kingdle;
 
-public class  Book {
+public class Topbook {
     //	• Cover image
     //	• ISBN
     //	• Author
@@ -15,12 +15,12 @@ public class  Book {
     private String isbn;
     private String img_path;
     
-    public Book(String _title,
-                String _author,
-                Float _rating,
-                String _description,
-                String _isbn,
-                String _img_path) {
+    public Topbook(String _title,
+                   String _author,
+                   Float _rating,
+                   String _description,
+                   String _isbn,
+                   String _img_path) {
         this.title = _title;
         this.author = _author;
         this.rating = _rating;
@@ -31,9 +31,7 @@ public class  Book {
     public String get_title () {
         return title;
     }
-    public String get_author () {
-        return author;
-    }
+    public String get_author () { return author; }
     public Float get_rating () {
         return rating;
     }

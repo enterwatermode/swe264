@@ -25,14 +25,14 @@ public class SavedFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         //saved books
-        List<Book> books = new ArrayList<>();
+        List<Topbook> books = new ArrayList<>();
 
         topbook_db = TopbookDB.getDatabase(this.getContext());
         topbook_dao = topbook_db.TopbookDao();
 
         List<TopbookTable> bookTable = topbook_dao.getAll();
         for (int i = 0; i < bookTable.size(); i++) {
-            books.add(new Book(bookTable.get(i).title , bookTable.get(i).author, bookTable.get(i).rating, bookTable.get(i).description, bookTable.get(i).isbn, bookTable.get(i).img_path));
+            books.add(new Topbook(bookTable.get(i).title , bookTable.get(i).author, bookTable.get(i).rating, bookTable.get(i).description, bookTable.get(i).isbn, bookTable.get(i).img_path));
         }
 
 
@@ -43,7 +43,7 @@ public class SavedFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rvSavedBookList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new BookListAdapter(books, topbook_dao));
+        recyclerView.setAdapter(new TopbookListAdapter(books, topbook_dao));
 
         return view;
     }

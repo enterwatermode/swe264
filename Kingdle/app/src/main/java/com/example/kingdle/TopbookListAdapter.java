@@ -1,6 +1,5 @@
 package com.example.kingdle;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +10,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 import java.util.List;
 
-public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHolder> {
+public class TopbookListAdapter extends RecyclerView.Adapter<TopbookListAdapter.ViewHolder> {
 
 
 
-    private List<Book> bookList;
+    private List<Topbook> bookList;
     TopbookDao topbook_dao;
 
-    BookListAdapter(List<Book> list, TopbookDao topbook_dao) {
+    TopbookListAdapter(List<Topbook> list, TopbookDao topbook_dao) {
         this.bookList = list;
         this.topbook_dao = topbook_dao;
     }
@@ -51,14 +48,14 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
 
     @NonNull
     @Override
-    public BookListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TopbookListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_row, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Book book = bookList.get(position);
+        Topbook book = bookList.get(position);
         //Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).into(holder.ivMovie);
         holder.ivBook.setImageResource(R.drawable.ic_book_foreground);
         holder.tvTitle.setText(book.get_title());

@@ -26,7 +26,7 @@ public class TopbookTable {
 
     }
 
-    public TopbookTable (Book book) {
+    public TopbookTable (Topbook book) {
         this.title = book.get_title();
         this.author = book.get_author();
         this.rating = book.get_rating();
