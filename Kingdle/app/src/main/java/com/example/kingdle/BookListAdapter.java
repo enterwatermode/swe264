@@ -54,10 +54,10 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         //Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).into(holder.ivMovie);
         holder.ivBook.setImageResource(R.drawable.ic_book_foreground);
         holder.tvTitle.setText(book.get_title());
-        holder.tvAuthor.setText(book.get_author());
-        holder.tvDescription.setText(book.get_description());
-        holder.tvIsbn.setText(book.get_isbn());
-        holder.tvRating.setText(Float.toString(book.get_rating()));
+        holder.tvAuthor.setText("Author: " + book.get_author());
+        holder.tvDescription.setText("Descrition: " + book.get_description());
+        holder.tvIsbn.setText("ISBN: " + book.get_isbn());
+        holder.tvRating.setText("Rating: " + Float.toString(book.get_rating()));
         holder.itemView.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
