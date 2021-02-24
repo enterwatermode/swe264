@@ -1,5 +1,6 @@
 package com.example.kingdle;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +11,21 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import java.util.List;
 
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHolder> {
 
+
+
     private List<Book> bookList;
-    BookListAdapter(List<Book> list) {
+    TopbookDao topbook_dao;
+
+    BookListAdapter(List<Book> list, TopbookDao topbook_dao) {
         this.bookList = list;
+        this.topbook_dao = topbook_dao;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,7 +70,9 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 Log.d("demo", "onClick for book" + book.get_title());
-
+                TopbookTable book_to_insert = new TopbookTable(book);
+                topbook_dao.insert(book_to_insert);
+                Log.d("demo", "total books in db: " + topbook_dao.getAll().size());
             }
         });
     }

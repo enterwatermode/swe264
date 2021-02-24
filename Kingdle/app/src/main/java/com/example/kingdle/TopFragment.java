@@ -16,6 +16,9 @@ import java.util.List;
 public class TopFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    public TopbookDB topbook_db;
+    public TopbookDao topbook_dao;
+
 
     @Override
     public View onCreateView(
@@ -30,6 +33,8 @@ public class TopFragment extends Fragment {
         books.add(new Book("The Midnight Library", "Matt Haig", (float) 9.3, "A feel-good book guaranteed to lift your spirits.", "9781250178602", "/"));
         books.add(new Book("The Sanatorium", "Sarah Pearse", (float) 9.2, "What could possibly go wrong at an abandoned sanatorium turned hotel? Throw in the Swiss Alps setting AND an off-duty detective and you know you are going to be in for some winter weather chills. And, NOT from the low temperatures. This book stopped us in our tracks. Well, at least we THINK they are our tracks.", "9781250178602", "/"));
 
+        topbook_db = TopbookDB.getDatabase(this.getContext());
+        topbook_dao = topbook_db.TopbookDao();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_top, container, false);
@@ -37,8 +42,10 @@ public class TopFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rvBookList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new BookListAdapter(books));
+        recyclerView.setAdapter(new BookListAdapter(books, topbook_dao));
 
         return view;
     }
+
+
 }
