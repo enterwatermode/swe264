@@ -55,10 +55,11 @@
 
         <Button
             android:id="@+id/buttonSave"
-            android:layout_width="133dp"
+            android:layout_width="104dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:text="Save"
-            android:textColor="#070707" />
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
