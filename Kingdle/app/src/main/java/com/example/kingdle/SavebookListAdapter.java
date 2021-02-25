@@ -17,10 +17,10 @@ public class SavebookListAdapter extends RecyclerView.Adapter<SavebookListAdapte
 
 
 
-    private List<Topbook> bookList;
+    private List<TopbookTable> bookList;
     TopbookDao topbook_dao;
 
-    SavebookListAdapter(List<Topbook> list, TopbookDao topbook_dao) {
+    SavebookListAdapter(List<TopbookTable> list, TopbookDao topbook_dao) {
         this.bookList = list;
         this.topbook_dao = topbook_dao;
     }
@@ -55,19 +55,19 @@ public class SavebookListAdapter extends RecyclerView.Adapter<SavebookListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Topbook book = bookList.get(position);
+        TopbookTable book = bookList.get(position);
         //Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).into(holder.ivMovie);
         holder.ivBook.setImageResource(R.drawable.ic_book_foreground);
-        holder.tvTitle.setText(book.get_title());
-        holder.tvAuthor.setText("Author: " + book.get_author());
-        holder.tvDescription.setText("Descrition: " + book.get_description());
-        holder.tvIsbn.setText("ISBN: " + book.get_isbn());
-        holder.tvRating.setText("Rating: " + (book.get_rating()));
+        holder.tvTitle.setText(book.title);
+        holder.tvAuthor.setText("Author: " + book.author);
+        holder.tvDescription.setText("Descrition: " + book.description);
+        holder.tvIsbn.setText("ISBN: " + book.isbn);
+        holder.tvRating.setText("Rating: " + (book.rating));
         holder.itemView.findViewById(R.id.buttonRemove).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Log.d("demo", "onClick for book" + book.get_title());
-
+                topbook_dao.removeById(book.id);
             }
         });
     }

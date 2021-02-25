@@ -15,5 +15,8 @@ public interface TopbookDao {
 
     @Query("SELECT * FROM Topbook_table")
     List<TopbookTable> getAll();
+
+    @Query("DELETE FROM Topbook_table WHERE id = :id")
+    void removeById(long id);
 }
 

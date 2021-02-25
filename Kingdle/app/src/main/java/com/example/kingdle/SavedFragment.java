@@ -31,10 +31,6 @@ public class SavedFragment extends Fragment {
         topbook_dao = topbook_db.TopbookDao();
 
         List<TopbookTable> bookTable = topbook_dao.getAll();
-        for (int i = 0; i < bookTable.size(); i++) {
-            books.add(new Topbook(bookTable.get(i).title , bookTable.get(i).author, bookTable.get(i).rating, bookTable.get(i).description, bookTable.get(i).isbn, bookTable.get(i).img_path));
-        }
-
 
 
         // Inflate the layout for this fragment
@@ -43,7 +39,7 @@ public class SavedFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rvSavedBookList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new SavebookListAdapter(books, topbook_dao));
+        recyclerView.setAdapter(new SavebookListAdapter(bookTable, topbook_dao));
 
         return view;
     }
