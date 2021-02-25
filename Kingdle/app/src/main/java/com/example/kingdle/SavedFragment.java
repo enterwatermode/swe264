@@ -43,7 +43,7 @@ public class SavedFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rvSavedBookList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new TopbookListAdapter(books, topbook_dao));
+        recyclerView.setAdapter(new SavebookListAdapter(books, topbook_dao));
 
         return view;
     }

@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class TopbookListAdapter extends RecyclerView.Adapter<TopbookListAdapter.ViewHolder> {
+public class SavebookListAdapter extends RecyclerView.Adapter<SavebookListAdapter.ViewHolder> {
 
 
 
     private List<Topbook> bookList;
     TopbookDao topbook_dao;
 
-    TopbookListAdapter(List<Topbook> list, TopbookDao topbook_dao) {
+    SavebookListAdapter(List<Topbook> list, TopbookDao topbook_dao) {
         this.bookList = list;
         this.topbook_dao = topbook_dao;
     }
@@ -32,7 +32,7 @@ public class TopbookListAdapter extends RecyclerView.Adapter<TopbookListAdapter.
         TextView tvRating;
         TextView tvDescription;
         TextView tvIsbn;
-        Button buttonSave;
+        Button buttonRemove;
 
         ViewHolder(View bookRow) {
             super(bookRow);
@@ -42,14 +42,14 @@ public class TopbookListAdapter extends RecyclerView.Adapter<TopbookListAdapter.
             tvRating = bookRow.findViewById(R.id.tvRating);
             tvDescription = bookRow.findViewById(R.id.tvDescription);
             tvIsbn =  bookRow.findViewById(R.id.tvIsbn);
-            buttonSave = bookRow.findViewById(R.id.buttonSave);
+            buttonRemove = bookRow.findViewById(R.id.buttonRemove);
         }
     }
 
     @NonNull
     @Override
-    public TopbookListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.topbook_row, parent, false);
+    public SavebookListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.savebook_row, parent, false);
         return new ViewHolder(view);
     }
 
@@ -63,13 +63,11 @@ public class TopbookListAdapter extends RecyclerView.Adapter<TopbookListAdapter.
         holder.tvDescription.setText("Descrition: " + book.get_description());
         holder.tvIsbn.setText("ISBN: " + book.get_isbn());
         holder.tvRating.setText("Rating: " + (book.get_rating()));
-        holder.itemView.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
+        holder.itemView.findViewById(R.id.buttonRemove).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("demo", "onClick for book" + book.get_title());
-                TopbookTable book_to_insert = new TopbookTable(book);
-                topbook_dao.insert(book_to_insert);
-                Log.d("demo", "total books in db: " + topbook_dao.getAll().size());
+                //Log.d("demo", "onClick for book" + book.get_title());
+
             }
         });
     }
