@@ -1,5 +1,6 @@
 package com.uci.edu.bookbackend.exception;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

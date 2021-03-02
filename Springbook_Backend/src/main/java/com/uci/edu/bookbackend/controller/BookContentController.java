@@ -15,6 +15,7 @@ public class BookContentController {
     @Autowired
     private BookContentRepository bcr;
 
+    //all the record
     @GetMapping("/content")
     public List<BookContent> getAllRecords() {
         return bcr.findAll();
@@ -25,4 +26,15 @@ public class BookContentController {
         return bcr.save(record);
     }
 
+    //get book by book's name
+    @GetMapping("/content/{name}")
+    public List<BookContent> getBookByName(@PathVariable String name) {
+        return bcr.getBookContentByBookname(name);
+    }
+
+    //get all the books' name
+    @GetMapping("/names")
+    public List<String> getAllBooksName() {
+        return bcr.getAllBooksName();
+    }
 }
