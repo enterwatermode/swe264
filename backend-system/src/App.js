@@ -4,6 +4,7 @@ import Header from'./components/Header';
 import Footer from './components/Footer';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Createbook from './components/Createbook';
+import Details from './components/Details';
 
 function App() {
   return (
@@ -15,10 +16,11 @@ function App() {
             <Switch>
               <Route path = '/' exact component = {Listbooks}></Route>
               <Route path = '/createbook' component = {Createbook}></Route>
+              <Route path = '/details/:id' component={Details}></Route> 
             </Switch>      
         </div>
-        <Footer/>
       </div>
+      <Footer/>
       </Router>
     </div>
   );

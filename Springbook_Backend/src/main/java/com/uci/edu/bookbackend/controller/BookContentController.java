@@ -1,6 +1,8 @@
 package com.uci.edu.bookbackend.controller;
 
+import com.uci.edu.bookbackend.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.uci.edu.bookbackend.repository.BookContentRepository;
@@ -32,9 +34,30 @@ public class BookContentController {
         return bcr.getBookContentByBookname(name);
     }
 
+    //get book by an id
+    @GetMapping("/content/get/{id}")
+    public Optional<BookContent> getBookById(@PathVariable Long id) {
+        return bcr.findById(id);
+    }
+
     //get all the books' name
     @GetMapping("/names")
     public List<String> getAllBooksName() {
         return bcr.getAllBooksName();
+    }
+
+    @GetMapping("/namesId")
+    public List<Object> getAllBooksNameWithId() {
+        return bcr.getAllBooksNameWithId();
+    }
+
+    //Delete a specific book in the database
+    @DeleteMapping("/content/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteBook(@PathVariable Long id) {
+        BookContent book = bcr.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not exist:" + id));
+        bcr.delete(book);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }

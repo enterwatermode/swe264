@@ -16,4 +16,7 @@ public interface BookContentRepository extends JpaRepository<BookContent, Long>{
 
     @Query(value = "SELECT bookname FROM bookcontent", nativeQuery = true)
     public List<String> getAllBooksName();
+
+    @Query(value = "SELECT id, bookname FROM bookcontent", nativeQuery = true)
+    public List<Object> getAllBooksNameWithId();
 }

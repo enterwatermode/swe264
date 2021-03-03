@@ -1,0 +1,17 @@
+.bookTitle {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.bookContent {
+    background-color: beige;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.article {
+    padding-left: 5vw;
+}
