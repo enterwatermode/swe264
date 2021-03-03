@@ -21,8 +21,8 @@ public class ConnectivityControl extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if(ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())){
             boolean noConn = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
-            if(noConn) Toast.makeText(context,"disconnected",Toast.LENGTH_SHORT).show();
-            else Toast.makeText(context,"connected",Toast.LENGTH_SHORT).show();
+            if(noConn) Toast.makeText(context,"NO INTERNET CONNECTION! Please check you internet connection!",Toast.LENGTH_SHORT).show();
+            else Toast.makeText(context,"Welcome to Kingdle!",Toast.LENGTH_SHORT).show();
         }
         if(intent.getAction().equals(intent.ACTION_BATTERY_CHANGED)){
             int level =intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
@@ -31,14 +31,14 @@ public class ConnectivityControl extends BroadcastReceiver {
             float batteryPct = level * 100 / (float)scale;
 
             if(batteryPct == 21.0) previous = 21;
-            if(batteryPct == 89.0) previous = 89;
+            if(batteryPct == 19.0) previous = 19;
 
             if(batteryPct == 20.0 && previous == 21 ) {
-                Toast.makeText(context,"low battery",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"LOW BATTERY! You cannot search online API",Toast.LENGTH_SHORT).show();
                 previous = 0;
             }
-            else if(batteryPct == 90.0 && previous == 89) {
-                Toast.makeText(context,"full battery", Toast.LENGTH_SHORT).show();
+            else if(batteryPct == 20.0 && previous == 19) {
+                Toast.makeText(context,"ONLINE SEARCH BACK!", Toast.LENGTH_SHORT).show();
                 previous = 0;
             }
         }
