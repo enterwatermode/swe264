@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -59,8 +60,12 @@ public class SearchFragment extends Fragment {
         mButton.setOnClickListener(v -> {
             String title = mtitle.getText().toString();
             String author = mauthor.getText().toString();
-            connect(title, author);
-            });
+            if(title.equals("") && author.equals("") ) {
+                Toast.makeText(getActivity().getApplicationContext(), "Please fill the title or/and the author", Toast.LENGTH_SHORT).show();
+            }else{
+                connect(title, author);
+            }
+        });
 
         return view;
     }
