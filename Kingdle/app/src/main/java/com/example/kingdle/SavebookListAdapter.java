@@ -1,5 +1,9 @@
 package com.example.kingdle;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +24,11 @@ public class SavebookListAdapter extends RecyclerView.Adapter<SavebookListAdapte
     private List<TopbookTable> bookList;
     TopbookDao topbook_dao;
 
-    SavebookListAdapter(List<TopbookTable> list, TopbookDao topbook_dao) {
+
+    SavebookListAdapter( List<TopbookTable> list, TopbookDao topbook_dao) {
         this.bookList = list;
         this.topbook_dao = topbook_dao;
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -68,6 +74,11 @@ public class SavebookListAdapter extends RecyclerView.Adapter<SavebookListAdapte
             public void onClick(View v) {
                 //Log.d("demo", "onClick for book" + book.get_title());
                 topbook_dao.removeById(book.id);
+               //reload the recycleview
+                bookList.remove(position);
+                notifyItemRemoved(position);
+                notifyDataSetChanged();
+
             }
         });
     }
