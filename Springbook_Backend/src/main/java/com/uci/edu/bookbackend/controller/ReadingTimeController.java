@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://54.176.130.211:3000")
+@CrossOrigin(origins = "http://54.183.80.30:3000")
 @RestController
 @RequestMapping("/time/")
 public class ReadingTimeController {
