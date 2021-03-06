@@ -10,4 +10,5 @@
 .allBooks {
     max-height: 60vh;
     overflow: auto;
+    margin-bottom: 50px;
 }
