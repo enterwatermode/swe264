@@ -9,7 +9,7 @@ import com.uci.edu.bookbackend.repository.BookContentRepository;
 import com.uci.edu.bookbackend.model.*;
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://54.176.130.211:3000")
 @RestController
 @RequestMapping("/data/")
 public class BookContentController {
