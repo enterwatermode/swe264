@@ -8,7 +8,7 @@
 
 .bookContent {
     background-color: beige;
-    max-height: 60vh;
+    height: 60vh;
     overflow: auto;
     margin-bottom: 50px;
 }

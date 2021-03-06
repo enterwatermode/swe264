@@ -5,7 +5,7 @@ class Footer extends Component {
     render() {
         return (
             <div className = "App-footer">
-                <footer>@2021, Hanbing Wang, Yuchen Hu, Yukan Zhang, Yaxuan Zang</footer>
+                <footer>©2021, Yuchen Hu, Hanbing Wang, Yukan Zhang, Yaxuan Zang</footer>
             </div>
         );
     }

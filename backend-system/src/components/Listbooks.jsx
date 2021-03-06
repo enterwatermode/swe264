@@ -37,13 +37,13 @@ class Listbooks extends Component {
                 <div className = "row">
                     <button className="btn btn-primary addBooks" onClick={this.addBooks}>Add books</button>
                 </div>
-                <div className = "row">
+                <div className = "row allBooks">
                     <table className = "table table-striped table-bordered">
                         <thead>
                             <th>Book Name</th>
                             <th>Action</th>
                         </thead>
-                        <tbody className = "allBooks">
+                        <tbody>
                             {
                                 this.state.books.map(book => 
                                 <tr key = {book[0]}>

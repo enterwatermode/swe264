@@ -3,6 +3,10 @@ import axios from 'axios';
 const api = "http://54.241.136.35:8080/data/content";
 const api2 = "http://54.241.136.35:8080/data";
 
+// For local development
+// const api = "http://localhost:8080/data/content";
+// const api2 = "http://localhost:8080/data";
+
 class Bookservice {
 
     createBooks(book) {
