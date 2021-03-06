@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const api = "http://localhost:8080/data/content";
-const api2 = "http://localhost:8080/data";
+const api = "http://54.241.136.35:8080/data/content";
+const api2 = "http://54.241.136.35:8080/data";
 
 class Bookservice {
 

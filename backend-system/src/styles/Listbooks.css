@@ -6,3 +6,8 @@
     margin-top: 15px;
     margin-bottom: 25px;
 }
+
+.allBooks {
+    max-height: 60vh;
+    overflow: auto;
+}

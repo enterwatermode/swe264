@@ -43,7 +43,7 @@ class Listbooks extends Component {
                             <th>Book Name</th>
                             <th>Action</th>
                         </thead>
-                        <tbody>
+                        <tbody className = "allBooks">
                             {
                                 this.state.books.map(book => 
                                 <tr key = {book[0]}>
