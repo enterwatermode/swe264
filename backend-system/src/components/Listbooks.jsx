@@ -40,8 +40,8 @@ class Listbooks extends Component {
                 <div className = "row allBooks">
                     <table className = "table table-striped table-bordered">
                         <thead>
-                            <th>Book Name</th>
-                            <th>Action</th>
+                            <th width="50%">Book Name</th>
+                            <th width="50%">Action</th>
                         </thead>
                         <tbody>
                             {
