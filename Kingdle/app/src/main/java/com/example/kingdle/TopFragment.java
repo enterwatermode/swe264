@@ -52,9 +52,6 @@ public class TopFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-
-
-
         topbook_db = TopbookDB.getDatabase(this.getContext());
         topbook_dao = topbook_db.TopbookDao();
 
@@ -65,12 +62,7 @@ public class TopFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        //dummy books:
         List<Topbook> books = new ArrayList<>();
-//        books.add(new Topbook("The Four Winds", "Kristin Hannah", (float) 9.5, "Perfect for fans of Where the Crawdads Sing, Kristin Hannah’s stunningly beautiful and heart-wrenching dustbowl drama traces the conflicts and challenges faced by Elsa and her family, who journey west in search of a better life. ", "9781250178602", "/"));
-//        books.add(new Topbook("Faithless in Death: An Eve Dallas Novel ", "J. D. Robb", (float) 9.4, "In the new Eve Dallas police thriller from #1 New York Times-bestselling author J. D. Robb, what looked like a lover’s quarrel turned fatal has larger—and more terrifying—motives behind it… ", "9781250178602", "/"));
-//        books.add(new Topbook("The Midnight Library", "Matt Haig", (float) 9.3, "A feel-good book guaranteed to lift your spirits.", "9781250178602", "/"));
-//        books.add(new Topbook("The Sanatorium", "Sarah Pearse", (float) 9.2, "What could possibly go wrong at an abandoned sanatorium turned hotel? Throw in the Swiss Alps setting AND an off-duty detective and you know you are going to be in for some winter weather chills. And, NOT from the low temperatures. This book stopped us in our tracks. Well, at least we THINK they are our tracks.", "9781250178602", "/"));
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
