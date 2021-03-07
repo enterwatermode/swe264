@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Retrofit;
+
 
 public class TopFragment extends Fragment {
 
@@ -19,6 +21,10 @@ public class TopFragment extends Fragment {
     public TopbookDB topbook_db;
     public TopbookDao topbook_dao;
 
+    //https://www.googleapis.com/books/v1/users/114632686002671658716/bookshelves/0/volumes?key=AIzaSyApal0Ji1o42yjQD8KHVAcL8RzuR0HlBdo
+    private static final String BASE_URL = "https://www.googleapis.com/books/v1/users/114632686002671658716/bookshelves/0/volumes";
+    private static final String API_KEY = "AIzaSyApal0Ji1o42yjQD8KHVAcL8RzuR0HlBdo";
+    static Retrofit retrofit = null;
 
     @Override
     public View onCreateView(
