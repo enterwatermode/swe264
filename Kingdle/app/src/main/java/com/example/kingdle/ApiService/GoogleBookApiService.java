@@ -14,5 +14,5 @@ public interface GoogleBookApiService {
 
 
     @GET("v1/users/114632686002671658716/bookshelves/0/volumes")
-    Call<JsonElement> getTopBooks( @Query("api_key") String apiKey);
+    Call<SearchBook> getTopBooks( @Query("api_key") String apiKey);
 }

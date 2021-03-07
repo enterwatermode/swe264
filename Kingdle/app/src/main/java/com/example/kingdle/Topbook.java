@@ -10,18 +10,20 @@ public class Topbook {
     //	• Ratings
     //Simple description
     @SerializedName("title")
-    private String title;
-    @SerializedName("authors")
-    private String author;
-    @SerializedName("averageRating")
-    private Float rating;
-    @SerializedName("description")
-    private String description;
-    @SerializedName("publisher")
-    private String isbn;
-    @SerializedName("imageLinks")
-    private String img_path;
-    
+    public String title;
+
+    public String author;
+
+    public Float rating;
+
+    public String description;
+
+    public String isbn;
+
+    public String img_path;
+
+    public Topbook (){}
+
     public Topbook(String _title,
                    String _author,
                    Float _rating,
