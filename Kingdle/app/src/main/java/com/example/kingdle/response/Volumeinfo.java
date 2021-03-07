@@ -15,8 +15,6 @@ public class Volumeinfo{
     List<IndustryInfo> induinfo;
     @SerializedName("description")
     String description;
-    @SerializedName("averageRating")
-    Float rating;
     @SerializedName("imageLinks")
     private Image imageLinks;
 
@@ -50,9 +48,5 @@ public class Volumeinfo{
 
     public String getDescription() {
         return description;
-    }
-
-    public Float getRating(){
-        return rating;
     }
 }

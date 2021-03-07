@@ -31,7 +31,7 @@ public class TopbookTable {
         this.author = book.get_author();
         this.rating = book.get_rating();
         this.description = book.get_description();
-        this.isbn = book.get_isbn();
+        this.isbn = book.get_description();
         this.img_path = book.get_img_path();
     }
 
