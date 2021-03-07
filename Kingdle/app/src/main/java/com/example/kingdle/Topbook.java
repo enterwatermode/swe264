@@ -1,5 +1,7 @@
 package com.example.kingdle;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Topbook {
     //	• Cover image
     //	• ISBN
@@ -7,12 +9,17 @@ public class Topbook {
     //	• Pages
     //	• Ratings
     //Simple description
-
+    @SerializedName("title")
     private String title;
+    @SerializedName("authors")
     private String author;
+    @SerializedName("averageRating")
     private Float rating;
+    @SerializedName("description")
     private String description;
+    @SerializedName("publisher")
     private String isbn;
+    @SerializedName("imageLinks")
     private String img_path;
     
     public Topbook(String _title,
