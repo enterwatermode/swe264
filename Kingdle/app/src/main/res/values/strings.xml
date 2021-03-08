@@ -17,4 +17,9 @@
     <string name="title">Enter the title</string>
     <string name="search">Search</string>
     <string name="author">Enter the author</string>
+    <string name="tvtitle">tvTitle</string>
+    <string name="select">Please select a book to read</string>
+    <string name="tvContent">Content</string>
+    <string name="read">Read</string>
+    <string name="Return">Return</string>
 </resources>

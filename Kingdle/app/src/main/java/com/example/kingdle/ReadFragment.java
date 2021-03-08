@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.IBinder;
 import android.util.Log;
@@ -15,50 +17,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.kingdle.Adapter.ReadBookTitleAdapter;
+import com.example.kingdle.Adapter.SearchBookAdapter;
+import com.example.kingdle.ApiService.AWSBooksApiService;
+import com.example.kingdle.ApiService.GoogleBookApiService;
+import com.example.kingdle.response.BookItem;
+import com.example.kingdle.response.BookeTitle;
+import com.example.kingdle.response.IndustryInfo;
+import com.example.kingdle.response.SearchBook;
+import com.example.kingdle.response.Volumeinfo;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ReadFragment#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class ReadFragment extends Fragment {
-/*
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ReadFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ReadFragment.
-     */
-    /*
-    // TODO: Rename and change types and number of parameters
-    public static ReadFragment newInstance(String param1, String param2) {
-        ReadFragment fragment = new ReadFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-*/
-
-
-
     /**************************************
     Author: Yukan Zhang
     Timer connection
@@ -99,6 +85,7 @@ public class ReadFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     //    if (getArguments() != null) {
     //        mParam1 = getArguments().getString(ARG_PARAM1);
     //        mParam2 = getArguments().getString(ARG_PARAM2);
@@ -115,11 +102,50 @@ public class ReadFragment extends Fragment {
          ***********************************/
     }
 
+    static final String BASE_URL = "http://54.241.136.35:8080/";
+    static final String TAG = MainActivity.class.getSimpleName();
+    static Retrofit retrofit = null;
+    private RecyclerView recyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_read, container, false);
+        View view = inflater.inflate(R.layout.fragment_read, container, false);
+        recyclerView = view.findViewById(R.id.rvBookTitleList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        connect();
+        return view;
+    }
+
+    private void connect() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        AWSBooksApiService awsBooksApiService = retrofit.create(AWSBooksApiService.class);
+        Call<List<BookeTitle>> call = awsBooksApiService.getBook();
+        call.enqueue(new Callback<List<BookeTitle>>() {
+            @Override
+            public void onResponse(Call<List<BookeTitle>> call, Response<List<BookeTitle>> response) {
+                List<BookeTitle> m = response.body();
+                List<List<String>> data = new ArrayList<>();
+                for(BookeTitle bt: m){
+                    List<String> book = new ArrayList<>();
+                    book.add(bt.getName());
+                    book.add(bt.getContent());
+                    data.add(book);
+                }
+                recyclerView.setAdapter(new ReadBookTitleAdapter(data));
+            }
+
+            @Override
+            public void onFailure(Call<List<BookeTitle>> call, Throwable throwable) {
+                Log.e(TAG, throwable.toString());
+            }
+        });
     }
 
     @Override
