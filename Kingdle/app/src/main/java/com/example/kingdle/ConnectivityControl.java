@@ -32,14 +32,18 @@ public class ConnectivityControl extends BroadcastReceiver {
 
             if(batteryPct == 21.0) previous = 21;
             if(batteryPct == 19.0) previous = 19;
-
+            if(batteryPct < 20.0) {
+                SearchControl.BATTERY_LOW = true;
+            }
             if(batteryPct == 20.0 && previous == 21 ) {
                 Toast.makeText(context,"LOW BATTERY! You cannot search online API",Toast.LENGTH_SHORT).show();
                 previous = 0;
+                SearchControl.BATTERY_LOW = true;
             }
             else if(batteryPct == 20.0 && previous == 19) {
                 Toast.makeText(context,"ONLINE SEARCH BACK!", Toast.LENGTH_SHORT).show();
                 previous = 0;
+                SearchControl.BATTERY_LOW = false;
             }
         }
     }

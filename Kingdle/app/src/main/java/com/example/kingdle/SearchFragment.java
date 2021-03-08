@@ -63,7 +63,25 @@ public class SearchFragment extends Fragment {
             if(title.equals("") && author.equals("") ) {
                 Toast.makeText(getActivity().getApplicationContext(), "Please fill the title or/and the author", Toast.LENGTH_SHORT).show();
             }else{
-                connect(title, author);
+
+                if(!SearchControl.BATTERY_LOW)
+                    connect(title, author);
+
+                //When the battery_charge is low, the search online is cut off
+                //Yukan Zhang
+                else {
+                    List<HashMap<String, List<String>>> books = new ArrayList<>();
+                    HashMap<String, List<String>> book = new HashMap<>();
+                    ArrayList<String> nullList = new ArrayList<>();
+                    nullList.add("BATTERY LOW! NO ONLINE SEARCH");
+                    book.put("Title",nullList);
+                    book.put("Authors",nullList);
+                    book.put("Description", nullList);
+                    book.put("Image",null);
+                    books.add(book);
+                    recyclerView.setAdapter(new SearchBookAdapter(books));
+                }
+
             }
         });
 

@@ -48,6 +48,11 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Vi
             url = url.substring(0, 4) + "s" + url.substring(4);
             Picasso.get().load(url).into(holder.tvImage);
         }
+        //no internet pic
+        //Yukan Zhang
+        else if(map.get("Image") == null){
+            holder.tvImage.setImageResource(R.mipmap.no_internet_connection);
+        }
 //        Picasso.get().load("https://www.gstatic.com/webp/gallery/4.sm.jpg").into(holder.tvImage);
         StringBuilder des = new StringBuilder();
         des.append("\n");
