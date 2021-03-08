@@ -15,13 +15,6 @@
         android:paddingBottom="5dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.administrator.login.login">
-    <TextView
-        android:id="@+id/select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -35,6 +28,14 @@
                 android:layout_marginRight="14dp"
                 android:background="@color/colorPrimary"
                 android:text="@string/Return" />
+
+            <TextView
+                android:id="@+id/select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black" />
 
         </RelativeLayout>
 
