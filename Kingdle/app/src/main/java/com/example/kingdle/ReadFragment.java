@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.kingdle.Adapter.ReadBookTitleAdapter;
 import com.example.kingdle.Adapter.SearchBookAdapter;
@@ -106,6 +108,7 @@ public class ReadFragment extends Fragment {
     static final String TAG = MainActivity.class.getSimpleName();
     static Retrofit retrofit = null;
     private RecyclerView recyclerView;
+    ReadBookTitleAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,6 +118,11 @@ public class ReadFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         connect();
+        Button mButton = view.findViewById(R.id.ReButton);
+        mButton.setOnClickListener(v -> {
+            adapter.isShown = false;
+            adapter.notifyDataSetChanged();
+        });
         return view;
     }
 
@@ -138,7 +146,8 @@ public class ReadFragment extends Fragment {
                     book.add(bt.getContent());
                     data.add(book);
                 }
-                recyclerView.setAdapter(new ReadBookTitleAdapter(data));
+                adapter = new ReadBookTitleAdapter(data);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override

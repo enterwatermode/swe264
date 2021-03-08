@@ -12,21 +12,6 @@
     android:layout_height="wrap_content"
     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
     android:textColor="@color/black"/>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/ReButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="14dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/Return" />
-
-    </RelativeLayout>
-
 
     <TextView
         android:id="@+id/tvContent"

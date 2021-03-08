@@ -15,6 +15,7 @@ import com.example.kingdle.R;
 import java.util.*;
 
 public class ReadBookTitleAdapter extends RecyclerView.Adapter<ReadBookTitleAdapter.ViewHolder>{
+    public boolean isShown;
     private List<List<String>> mData;
 
     public ReadBookTitleAdapter(List<List<String>> mData) {
@@ -32,7 +33,7 @@ public class ReadBookTitleAdapter extends RecyclerView.Adapter<ReadBookTitleAdap
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             tvContent = (TextView) itemView.findViewById(R.id.tvContent);
-            reButton = (Button) itemView.findViewById(R.id.ReButton);
+//            reButton = (Button) itemView.findViewById(R.id.ReButton);
             itemView.setOnClickListener(this);
         }
 
@@ -66,16 +67,23 @@ public class ReadBookTitleAdapter extends RecyclerView.Adapter<ReadBookTitleAdap
         holder.tvTitle.setText(list.get(0));
         holder.tvContent.setText(list.get(1));
         holder.tvContent.setVisibility(View.GONE);
-        holder.reButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.tvContent.setVisibility(View.GONE);
-            }
-        });
+        if(!isShown){
+            holder.tvContent.setVisibility(View.GONE);
+        }
+        else{
+            holder.tvContent.setVisibility(View.VISIBLE);
+        }
+//        holder.reButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                holder.tvContent.setVisibility(View.GONE);
+//            }
+//        });
         holder.tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.tvContent.setVisibility(View.VISIBLE);
+                isShown = true;
+                notifyItemChanged(position);
             }
         });
     }

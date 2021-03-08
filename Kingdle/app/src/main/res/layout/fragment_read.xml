@@ -23,26 +23,28 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black" />
 
-<!--        <RelativeLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content">-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-<!--            <Button-->
-<!--                android:id="@+id/ReButton"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentRight="true"-->
-<!--                android:layout_marginRight="14dp"-->
-<!--                android:background="@color/colorPrimary"-->
-<!--                android:text="@string/Return" />-->
+            <Button
+                android:id="@+id/ReButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="14dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/Return" />
 
-<!--        </RelativeLayout>-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvBookTitleList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBookTitleList"
+            android:layout_width="385dp"
+            android:layout_height="607dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp" />
+
 </LinearLayout>
 </FrameLayout>
