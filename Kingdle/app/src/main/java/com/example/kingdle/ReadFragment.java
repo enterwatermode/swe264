@@ -107,6 +107,7 @@ public class ReadFragment extends Fragment {
     static final String BASE_URL = "http://54.241.136.35:8080/";
     static final String TAG = MainActivity.class.getSimpleName();
     static Retrofit retrofit = null;
+    static Retrofit rTime = null;
     private RecyclerView recyclerView;
     ReadBookTitleAdapter adapter;
 
@@ -200,6 +201,8 @@ public class ReadFragment extends Fragment {
             }
             SaveTask st = new SaveTask();
             st.execute();
+            serTime=String.valueOf(FragTimer.seconds1);
+            connectAWS(serTime);
 
             getActivity().unbindService(connection);
             FragTimer.running = false;
@@ -209,5 +212,35 @@ public class ReadFragment extends Fragment {
         Timer connection, database access end
         ***********************************/
     }
+    static String serTime;
+    private void connectAWS(String time) {
+        if (rTime == null) {
+            rTime = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+
+        AWSApiService awsApiService = rTime.create(AWSApiService.class);
+        Call<TimeModel> call = awsApiService.postTime(BASE_URL + "time/"+time);
+        System.out.println("-----------------"+time+"---------------------");
+        call.enqueue(new Callback<TimeModel>() {
+            @Override
+            public void onResponse(Call<TimeModel> call, Response<TimeModel> response) {
+
+                if(response.isSuccessful()) {
+                    // showResponse(response.body().toString());
+                    Log.i(TAG, "post submitted to API." + response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TimeModel> call, Throwable t) {
+                Log.e(TAG, "Unable to submit post to API.");
+            }
+        });
+    }
+
+
 
 }
