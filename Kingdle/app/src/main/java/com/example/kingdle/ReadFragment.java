@@ -49,7 +49,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ReadFragment extends Fragment {
     /**************************************
     Author: Yukan Zhang
-    Timer connection
+    Timer connection, Database access
     *****************************************/
     TimerService FragTimer;
     boolean bound;
@@ -70,13 +70,7 @@ public class ReadFragment extends Fragment {
             // Log.v("Main","unBinder");
         }
     };
-    /***********************************
-    Timer connection end
-    ***********************************/
-    /***********************************
-     Author: Yukan Zhang
-     Timer connection, Database access
-     ***********************************/
+
     ServiceDB db;
     ServiceDao sdao;
     ServiceTable stable;
@@ -88,10 +82,6 @@ public class ReadFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-    //    if (getArguments() != null) {
-    //        mParam1 = getArguments().getString(ARG_PARAM1);
-    //        mParam2 = getArguments().getString(ARG_PARAM2);
-    //    }
         /***********************************
          Author: Yukan Zhang
          Timer connection, Database access
@@ -107,7 +97,11 @@ public class ReadFragment extends Fragment {
     static final String BASE_URL = "http://54.241.136.35:8080/";
     static final String TAG = MainActivity.class.getSimpleName();
     static Retrofit retrofit = null;
+
+   //Retrofit instantiate for Time Service
+    //Yukan Zhang
     static Retrofit rTime = null;
+
     private RecyclerView recyclerView;
     ReadBookTitleAdapter adapter;
 
@@ -208,9 +202,7 @@ public class ReadFragment extends Fragment {
             FragTimer.running = false;
             bound = false;
         }
-        /***********************************
-        Timer connection, database access end
-        ***********************************/
+
     }
     static String serTime;
     private void connectAWS(String time) {
@@ -221,7 +213,7 @@ public class ReadFragment extends Fragment {
                     .build();
         }
 
-        AWSApiService awsApiService = rTime.create(AWSApiService.class);
+        AWSBooksApiService awsApiService = rTime.create(AWSBooksApiService.class);
         Call<TimeModel> call = awsApiService.postTime(BASE_URL + "time/"+time);
         System.out.println("-----------------"+time+"---------------------");
         call.enqueue(new Callback<TimeModel>() {
@@ -240,7 +232,9 @@ public class ReadFragment extends Fragment {
             }
         });
     }
-
+    /***********************************
+     Timer connection, database access end
+     ***********************************/
 
 
 }

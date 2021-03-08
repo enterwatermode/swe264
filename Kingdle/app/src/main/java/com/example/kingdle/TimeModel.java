@@ -1,7 +1,11 @@
 package com.example.kingdle;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
+/***********************************
+ Component: TimeModel
+ Author: Yukan Zhang
+ Functionality: get API reponse
+ ***********************************/
 public class TimeModel {
     @SerializedName("time")
     @Expose
