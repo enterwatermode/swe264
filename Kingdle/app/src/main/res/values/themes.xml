@@ -12,11 +12,17 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="textAppearanceButton">@style/AppTextAppearance.Button</item>
+
     </style>
 
     <style name="Theme.Kingdle.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
+    <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="Theme.Kingdle.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
