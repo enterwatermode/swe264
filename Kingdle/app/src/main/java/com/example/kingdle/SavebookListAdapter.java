@@ -15,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class SavebookListAdapter extends RecyclerView.Adapter<SavebookListAdapter.ViewHolder> {
@@ -62,8 +64,9 @@ public class SavebookListAdapter extends RecyclerView.Adapter<SavebookListAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TopbookTable book = bookList.get(position);
-        //Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).into(holder.ivMovie);
-        holder.ivBook.setImageResource(R.drawable.ic_book_foreground);
+        String url = book.img_path;
+        url = url.substring(0, 4) + "s" + url.substring(4);
+        Picasso.get().load(url).into(holder.ivBook);
         holder.tvTitle.setText(book.title);
         holder.tvAuthor.setText("Author: " + book.author);
         holder.tvDescription.setText("Descrition: " + book.description);
